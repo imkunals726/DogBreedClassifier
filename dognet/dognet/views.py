@@ -15,12 +15,18 @@ def get_image(request):
         # create a form instance and populate it with data from the request:
         form = ImageForm(request.POST, request.FILES)
 
-        if form.is_valid():
+        
 
-            
+        if form.is_valid():
+            print(form)
+
             img     = cv2.imdecode(np.fromstring(request.FILES['image'].read(), np.uint8), cv2.IMREAD_UNCHANGED)
 
-            ret, frame_buff = cv2.imencode('.jpeg', img) #could be png, update html as well
+            cv2.imwrite('static/color_img.jpg', img)
+
+            img1 = cv2.imread('static/color_img.jpg')
+            
+            ret, frame_buff = cv2.imencode('.jpg', img1)
             frame_b64 = base64.b64encode(frame_buff)
 
             test_set = [cv2.resize(img,(256, 256))]
@@ -38,8 +44,8 @@ def get_image(request):
 
         print(xValues)
         print(yValues)
+      
 
-        form = ImageForm()
 
         return render(request, 'index.html', {'xValues' : xValues , 'yValues' : yValues ,  'form' : form , 'img' : frame_b64 })
 

@@ -1,4 +1,4 @@
-FROM python:3.7.12-alpine3.14
+FROM python:3.7.12-slim-buster
 
 ENV PYTHONUNBUFFERED 1
 
@@ -6,11 +6,14 @@ COPY ./requirements.txt /requirements.txt
 
 RUN pip install -r requirements.txt
 
-RUN mkdir /app
+RUN apt-get update
 
-WORKDIR app
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 
-RUN adduser -D user
+RUN mkdir /dognet
 
-USER user
+WORKDIR dognet
 
+COPY ./dognet .
+
+CMD [ "python" , "manage.py", "runserver" , "0.0.0.0:8000"]

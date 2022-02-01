@@ -1,21 +1,24 @@
 
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <div class="container">
-    <h1> DogNet</h1>
+        <div class="py-5 text-center bg-secondary text-white">
 
+            <h1 class="mb-3"> DogNet </h1>
+
+            <h4 class="mb-3"> Please upload the Image of a dog</h1>
         <form action="/image/" method="POST" enctype="multipart/form-data">
-
-            {% csrf_token %}
-            {{ form.as_p }}
-
-            <input type="submit" value="Submit">
+            {% csrf_token %}       
+            <div class="form-group">
+                {{ form.as_p }}
+            </div >
+            <button class = "btn btn-primary" type="submit">Submit </button>
         </form>
+    </div>
 
-</div>
-
-<img src="data:image/jpeg;base64, {{ img|safe }}"></img>
+<img class = "ml-3" src="{% static "color_img.jpg" %}" alt="My image" width="250" height="250"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -59,6 +62,7 @@ new Chart("myChart", {
 });
 
 </script>
+</div>
 <body>
 
 
