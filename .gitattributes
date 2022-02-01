@@ -1,0 +1,5 @@
+dognet/dognet/dognet/variables/variables.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+dognet/dognet/dognet/variables/variables.index filter=lfs diff=lfs merge=lfs -text
+dognet/dognet/dognet/assets/ filter=lfs diff=lfs merge=lfs -text
+dognet/dognet/dognet/saved_model.pb filter=lfs diff=lfs merge=lfs -text
+dognet/dognet/dognet/keras_metadata.pb filter=lfs diff=lfs merge=lfs -text
